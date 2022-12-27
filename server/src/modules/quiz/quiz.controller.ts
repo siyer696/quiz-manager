@@ -7,12 +7,13 @@ export class QuizController {
   constructor(private readonly quizService: QuizService) {}
 
   @Get('/')
+  @HttpCode(200)
   getAllQuiz() {
     return this.quizService.getAllQuiz();
   }
 
   @Post('/')
-  @HttpCode(200)
+  @HttpCode(201)
   @UsePipes(ValidationPipe)
   async createQuiz(@Body() quizData: createQuizDto) {
     return await this.quizService.createNewQuiz(quizData);
