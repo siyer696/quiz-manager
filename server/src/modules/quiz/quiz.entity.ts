@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+//Denotes table name
 @Entity('quizes')
 export class Quiz extends BaseEntity {
   @PrimaryGeneratedColumn({
