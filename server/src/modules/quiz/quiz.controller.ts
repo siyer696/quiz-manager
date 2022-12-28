@@ -1,10 +1,18 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, ValidationPipe, UsePipes } from '@nestjs/common';
-import { createQuizDto } from './dto/CreateQuiz.dto';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { CreateQuizDto } from './dto/CreateQuiz.dto';
 import { QuizService } from './quiz.service';
 
 @Controller('quiz')
 export class QuizController {
-  constructor(private readonly quizService: QuizService) {}
+  constructor(private quizService: QuizService) {}
 
   @Get('/')
   @HttpCode(200)
@@ -12,10 +20,11 @@ export class QuizController {
     return this.quizService.getAllQuiz();
   }
 
-  @Post('/')
+  @Post('/create')
   @HttpCode(201)
   @UsePipes(ValidationPipe)
-  async createQuiz(@Body() quizData: createQuizDto) {
+  async createQuiz(@Body() quizData: CreateQuizDto) {
+    console.log('Inside createQuiz controller');
     return await this.quizService.createNewQuiz(quizData);
   }
 }
