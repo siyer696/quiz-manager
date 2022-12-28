@@ -3,6 +3,8 @@ import {
   Controller,
   Get,
   HttpCode,
+  Param,
+  ParseIntPipe,
   Post,
   UsePipes,
   ValidationPipe,
@@ -18,6 +20,12 @@ export class QuizController {
   @HttpCode(200)
   getAllQuiz() {
     return this.quizService.getAllQuiz();
+  }
+
+
+  @Get('/:id')
+  getQuizById(@Param('id', ParseIntPipe) id: number){
+    return this.quizService.getQuizById(id);
   }
 
   @Post('/create')
