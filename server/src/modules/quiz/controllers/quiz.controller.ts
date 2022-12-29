@@ -10,6 +10,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateQuizDto } from '../dto/create-quiz.dto';
+import { Quiz } from '../entities/quiz.entity';
 import { QuizService } from '../services/quiz.service';
 
 @Controller('quiz')
@@ -18,13 +19,12 @@ export class QuizController {
 
   @Get('/')
   @HttpCode(200)
-  getAllQuiz() {
-    return this.quizService.getAllQuiz();
+  async getAllQuiz(): Promise<Quiz[]> {
+    return await this.quizService.getAllQuiz();
   }
 
-
   @Get('/:id')
-  getQuizById(@Param('id', ParseIntPipe) id: number){
+  getQuizById(@Param('id', ParseIntPipe) id: number) {
     return this.quizService.getQuizById(id);
   }
 
