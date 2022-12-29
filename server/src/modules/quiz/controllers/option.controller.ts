@@ -20,8 +20,11 @@ export class OptionController {
 
   @Post('')
   @UsePipes(ValidationPipe)
-  saveOptionToQuestion(@Body() createOption: CreateOptionDto) {
-    return createOption;
+  async saveOptionToQuestion(@Body() createOption: CreateOptionDto) {
+    const question = await this.questionService.findQuestionById(createOption.questionId)
+    console.log(question)
+    const option = await this.optionService.createOption(createOption, question);
+    return option;
   }
 
 }

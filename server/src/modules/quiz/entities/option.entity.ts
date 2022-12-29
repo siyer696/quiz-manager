@@ -1,4 +1,5 @@
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Question } from './question.entity';
 
 @Entity('options')
 export class Option extends BaseEntity {
@@ -17,6 +18,6 @@ export class Option extends BaseEntity {
       })
       isCorrect: boolean;
 
-    //   @ManyToOne(() => Quiz, (quiz) => quiz.questions)
-    //   quiz: Quiz
+      @ManyToOne(() => Question, (question) => question.options)
+      question: Question
 }
