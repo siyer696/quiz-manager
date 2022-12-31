@@ -4,6 +4,16 @@ import {
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
 
+
+// export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
+//   useFactory: async (): Promise<TypeOrmModuleOptions> => {
+//     return {
+    
+//     }
+//   }
+// }
+
+
 export default class TypeOrmConfig {
   static getOrmConfig(configService: ConfigService): TypeOrmModuleOptions {
     return {
